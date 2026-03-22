@@ -1,4 +1,5 @@
-from typing import Optional, List, Dict, Any
+from typing import Optional, List
+from app.items.items_by_knight import Armour, Weapon, Potion
 
 
 class Knight:
@@ -7,9 +8,9 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            weapon: Optional[Dict[str, Any]] = None,
-            armour: Optional[List[Dict[str, Any]]] = None,
-            potion: Optional[Dict[str, Any]] = None,
+            weapon: Optional[Weapon] = None,
+            armour: Optional[List[Armour]] = None,
+            potion: Optional[Potion] = None,
     ) -> None:
         self.name = name
         self.power = power
@@ -25,15 +26,9 @@ class Knight:
         if self.weapon is not None:
             power_final += self.weapon.power
 
-        if self.armour is None:
-            protection_final = 0
-
         if self.armour:
-            if isinstance(self.armour, list):
-                for part in self.armour:
-                    protection_final += part.protection
-            else:
-                protection_final += self.armour.protection
+            for part in self.armour:
+                protection_final += part.protection
 
         if self.potion is not None:
             effect = getattr(self.potion, "effect", {}) or {}

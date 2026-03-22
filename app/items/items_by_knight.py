@@ -2,8 +2,8 @@ from typing import Optional
 
 
 class Armour:
-    def __init__(self, name: str, protection: int) -> None:
-        self.name = name
+    def __init__(self, part: str, protection: int) -> None:
+        self.part = part
         self.protection = protection
 
 
@@ -14,6 +14,6 @@ class Weapon:
 
 
 class Potion:
-    def __init__(self, name: str, effect: Optional[dict]) -> None:
+    def __init__(self, name: Optional[str], effect: Optional[dict]) -> None:
         self.name = name
         self.effect = effect

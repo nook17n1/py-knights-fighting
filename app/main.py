@@ -100,17 +100,20 @@ def fight(knight1: Knight, knight2: Knight) -> dict:
     return {knight1.name: hp1, knight2.name: hp2}
 
 
-def battle(knightsсonfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     knights = []
-    for knight in knightsсonfig.values():
+    for knight in knights_config.values():
         k_weapon = knight.get("weapon") or {}
         weapon = Weapon(k_weapon.get("name"), k_weapon.get("power"))
         k_armour = knight.get("armour") or []
         armour = [
             Armour(piece["part"], piece["protection"])
             for piece in k_armour]
-        k_potion = knight.get("potion") or {}
-        potion = Potion(k_potion.get("name"), k_potion.get("effect"))
+        potion = None
+        if knight.get("potion"):
+            k_potion = knight.get("potion")
+            potion = Potion(k_potion.get("name"), k_potion.get("effect"))
+
         knight_conf = Knight(
             knight["name"],
             knight["power"],
