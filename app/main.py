@@ -102,6 +102,9 @@ def fight(knight1: Knight, knight2: Knight) -> dict:
 
 def battle(knights_config: dict) -> dict:
     knights = []
+    battle1 = {}
+    battle2 = {}
+
     for knight in knights_config.values():
         k_weapon = knight.get("weapon") or {}
         weapon = Weapon(k_weapon.get("name"), k_weapon.get("power"))
